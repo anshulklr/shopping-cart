@@ -29,7 +29,7 @@ public interface UserDao {
 	 * This is the method to be used to display 
 	 * the list of users to admin
 	 */
-	public List<User> getAllUsers();
+	public List<User> getAllUsers(int roleId);
 	
 	/*
 	 * This is the method to be used 
@@ -41,5 +41,5 @@ public interface UserDao {
 	 * This is the method to be used 
 	 * to delete the admin.
 	 */
-	public void deleteUser(String email);
+	public void deleteUser(String email,int roleId);
 }

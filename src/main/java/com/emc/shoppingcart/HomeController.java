@@ -35,7 +35,7 @@ public class HomeController {
 	@Autowired
 	ProductDao product;
 	@Autowired
-	UserService createService ;
+	UserService userService ;
 	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
@@ -53,11 +53,11 @@ public class HomeController {
 		product.insertProduct(product1);
 		*/
 		//Product product1=new Product();
-		List<Product> CrunchifyList = new ArrayList<Product>();
+		/*List<Product> CrunchifyList = new ArrayList<Product>();
 		CrunchifyList = product.getAllProducts();
 		for (Product prod : CrunchifyList) {
 			System.out.println(prod.getpName());
-		}
+		}*/
 		//product.deleteProduct(1);
 		
 		/*Product product2=new Product(2,"testproduct2",2,50,1000,"test product1");
@@ -67,6 +67,7 @@ public class HomeController {
 		//User user=new User("utkarsh", "bhardwaj", "utkarsh@admin.com", "bangalore", "", "bangalore", "karnataka", "India", 1234,"admin",2);
 		
 		//createService.createAdmin(user);
+		userService.deleteAdmin("utkarsh@admin.com",2);
 		return "home";
 	}
 	

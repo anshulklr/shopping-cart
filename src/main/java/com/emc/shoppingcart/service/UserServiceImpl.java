@@ -60,15 +60,15 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void deleteAdmin(String email) {
+	public void deleteAdmin(String email, int roleId) {
 		
-		userDao.deleteUser(email);
+		userDao.deleteUser(email,roleId);
 		
 	}
 
 	@Override
-	public List<User> displayAllUser() {
-		List<User> userlist = userDao.getAllUsers();
+	public List<User> displayAllUser(int roleId) {
+		List<User> userlist = userDao.getAllUsers(roleId);
 		return userlist;
 	}
 

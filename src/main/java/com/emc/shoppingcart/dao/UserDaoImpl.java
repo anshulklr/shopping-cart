@@ -43,17 +43,17 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public List<User> getAllUsers() {
+	public List<User> getAllUsers(int roleId) {
 		
-		String sql = "SELECT * FROM Users";  
-		  List<User> userlist= jdbcTemplateObject.query(sql, new BeanPropertyRowMapper(User.class));  
+		String sql = "SELECT * FROM Users where roleId=?";  
+		  List<User> userlist= jdbcTemplateObject.query(sql,new Object[]{roleId},new BeanPropertyRowMapper(User.class));  
 		  return userlist; 
 	}
 
 	@Override
 	public void updateUser(User user , String email ) {
 
-		String sql = "update user set FNAME = ?, LNAME = ?, ADDRESSLINE1 = ?, ADDRESSLINE2 = ?, CITY = ?, STATE = ?, COUNTRY = ?, PINCODE = ?, PASSWORD = ? where emailId=? ";
+		String sql = "update users set FNAME = ?, LNAME = ?, ADDRESSLINE1 = ?, ADDRESSLINE2 = ?, CITY = ?, STATE = ?, COUNTRY = ?, PINCODE = ?, PASSWORD = ? where emailId=? ";
 		jdbcTemplateObject.update(sql, user.getFname(), user.getLname(),  user.getAddressLine1(), user.getAddressLine2(), user.getCity(), user.getState(), user.getCountry(), user.getPincode(), user.getPasword(), email);
 		System.out.println("Updated user details");
 		
@@ -61,9 +61,9 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void deleteUser(String email) {
-		String sql = "delete from user where emailId=?";
-		jdbcTemplateObject.update(sql, email);
+	public void deleteUser(String email,int roleId) {
+		String sql = "delete from users where emailId=? and roleId=?";
+		jdbcTemplateObject.update(sql, email,roleId);
 		
 		System.out.println("Product deleted");
 		
